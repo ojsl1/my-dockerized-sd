@@ -1,0 +1,62 @@
+services:
+  rocm6.0:
+    container_name: rocm6.0
+    build:
+      context: .
+      dockerfile: dockerfile-6.0
+    ports:
+      - "3000:7860"
+    volumes:
+      - /home/saukko/unify-rocm/models:/Forge/stable-diffusion-webui/models/
+      - /home/saukko/unify-rocm/embeddings:/Forge/stable-diffusion-webui/embeddings/
+      - /home/saukko/unify-rocm/outputs:/Forge/stable-diffusion-webui/outputs/
+      - /home/saukko/unify-rocm/extensions:/Forge/stable-diffusion-webui/extensions/
+    devices:
+      - '/dev/kfd:/dev/kfd'
+      - '/dev/dri:/dev/dri'
+    security_opt:
+      - seccomp:unconfined
+    group_add:
+      - video
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+
+  rocm6.1:
+    container_name: rocm6.1
+    build:
+      context: .
+      dockerfile: dockerfile-6.1
+    ports:
+      - "3001:7860"
+    volumes:
+      - /home/saukko/unify-rocm/models:/Forge/stable-diffusion-webui/models/
+      - /home/saukko/unify-rocm/embeddings:/Forge/stable-diffusion-webui/embeddings/
+      - /home/saukko/unify-rocm/outputs:/Forge/stable-diffusion-webui/outputs/
+      - /home/saukko/unify-rocm/extensions:/Forge/stable-diffusion-webui/extensions/
+    devices:
+      - '/dev/kfd:/dev/kfd'
+      - '/dev/dri:/dev/dri'
+    security_opt:
+      - seccomp:unconfined
+      - no-new-privileges:true
+    group_add:
+      - video
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+
+configs:
+  my_webui_config1:
+    file: /home/saukko/unify-rocm/config.json 
+  my_webui_config2:
+    file: /home/saukko/unify-rocm/ui-config.json
+
+# Use bind volumes instead of named volumes in order to avoid data being copied into overlay2
+#volumes:
+#  models:
+#  embeddings:
+#  outputs:
+#  extensions:
