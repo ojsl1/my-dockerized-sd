@@ -1,11 +1,10 @@
 # Composable kernel compressed size: 5.16GB:
 FROM rocm/composable_kernel:ck_ub20.04_rocm6.0
 
-
 LABEL maintainer="Niinu <ojsl@protonmail.ch>"
 LABEL description="A1111+FORGE+ROCm for 7900XTX & 5800X3D"
 LABEL version="6.0"
-LABEL url=""
+LABEL url="https://github.com/ojsl1/my-dockerized-sd/"
 LABEL created="2024.03.06"
 
 # Fix for gradio being a bitch:
