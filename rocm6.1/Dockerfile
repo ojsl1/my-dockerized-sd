@@ -61,7 +61,7 @@ RUN git reset --hard e95333c5568b5039f7118d036c16afa9a2a8ad2c
 
 # Add python3.10 ppa (The composable kernels are based on old ubuntu 20.04)
 RUN apt update -y && add-apt-repository ppa:deadsnakes/ppa \
-    && apt install -y software-properties-common python3.10-full python3-venv \
+    && apt install -y software-properties-common python3.10-full python3-venv
 RUN update-alternatives --install /usr/local/bin/python python /usr/bin/python3.10 1
 
 # Set the environment variable first so no need to retype path
@@ -87,6 +87,7 @@ RUN pip uninstall -y torch torchvision
 RUN pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm6.1
 
 # Remove torch from stable-diffusion-webui requirements.txt
+RUN pip install huggingface_hub==0.25.2 
 RUN sed '/torch/d' requirements_versions.txt
 RUN pip install -r requirements_versions.txt
 

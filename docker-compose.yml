@@ -58,6 +58,36 @@ services:
       options:
         max-size: "10m"
 
+  rocm6.1-reforge:
+    container_name: rocm6.1-reforge
+    build:
+      context: .
+      dockerfile: dockerfile-6.1-reforge
+      args:
+        PYTORCH_ROCM_ARCH: ${PYTORCH_ROCM_ARCH}
+        HSA_OVERRIDE_GFX_VERSION: ${HSA_OVERRIDE_GFX_VERSION}
+        USE_CUDA: ${USE_CUDA}
+        HIP_VISIBLE_DEVICES: ${HIP_VISIBLE_DEVICES}
+    ports:
+      - "3001:7860"
+    volumes:
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/models:/ReForge/stable-diffusion-webui-reForge/models/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/embeddings:/Forge/stable-diffusion-webui-reForge/embeddings/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/outputs:/ReForge/stable-diffusion-webui-reForge/outputs/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/extensions:/ReForge/stable-diffusion-webui-reForge/extensions/
+    devices:
+      - '/dev/kfd:/dev/kfd'
+      - '/dev/dri:/dev/dri'
+    security_opt:
+      - seccomp:unconfined
+      - no-new-privileges:true
+    group_add:
+      - video
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+
 configs:
   my_webui_config1:
     file: /home/saukko/Dropbox/devel/projects/my-dockerized-sd/config.json
