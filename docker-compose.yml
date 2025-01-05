@@ -4,6 +4,11 @@ services:
     build:
       context: .
       dockerfile: dockerfile-6.0
+      args:
+        PYTORCH_ROCM_ARCH: ${PYTORCH_ROCM_ARCH}
+        HSA_OVERRIDE_GFX_VERSION: ${HSA_OVERRIDE_GFX_VERSION}
+        USE_CUDA: ${USE_CUDA}
+        HIP_VISIBLE_DEVICES: ${HIP_VISIBLE_DEVICES}
     ports:
       - "3000:7860"
     volumes:
@@ -28,13 +33,18 @@ services:
     build:
       context: .
       dockerfile: dockerfile-6.1
+      args:
+        PYTORCH_ROCM_ARCH: ${PYTORCH_ROCM_ARCH}
+        HSA_OVERRIDE_GFX_VERSION: ${HSA_OVERRIDE_GFX_VERSION}
+        USE_CUDA: ${USE_CUDA}
+        HIP_VISIBLE_DEVICES: ${HIP_VISIBLE_DEVICES}
     ports:
       - "3001:7860"
     volumes:
-      - /home/saukko/unify-rocm/models:/Forge/stable-diffusion-webui/models/
-      - /home/saukko/unify-rocm/embeddings:/Forge/stable-diffusion-webui/embeddings/
-      - /home/saukko/unify-rocm/outputs:/Forge/stable-diffusion-webui/outputs/
-      - /home/saukko/unify-rocm/extensions:/Forge/stable-diffusion-webui/extensions/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/models:/Forge/stable-diffusion-webui/models/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/embeddings:/Forge/stable-diffusion-webui/embeddings/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/outputs:/Forge/stable-diffusion-webui/outputs/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/extensions:/Forge/stable-diffusion-webui/extensions/
     devices:
       - '/dev/kfd:/dev/kfd'
       - '/dev/dri:/dev/dri'
@@ -50,9 +60,9 @@ services:
 
 configs:
   my_webui_config1:
-    file: /home/saukko/unify-rocm/config.json 
+    file: /home/saukko/Dropbox/devel/projects/my-dockerized-sd/config.json
   my_webui_config2:
-    file: /home/saukko/unify-rocm/ui-config.json
+    file: /home/saukko/Dropbox/devel/projects/my-dockerized-sd/ui-config.json
 
 # Use bind volumes instead of named volumes in order to avoid data being copied into overlay2
 #volumes:
