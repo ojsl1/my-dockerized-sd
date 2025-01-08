@@ -3,7 +3,7 @@ services:
     container_name: rocm6.0
     build:
       context: .
-      dockerfile: dockerfile-6.0
+      dockerfile: rocm6.0/Dockerfile
       args:
         PYTORCH_ROCM_ARCH: ${PYTORCH_ROCM_ARCH}
         HSA_OVERRIDE_GFX_VERSION: ${HSA_OVERRIDE_GFX_VERSION}
@@ -12,10 +12,10 @@ services:
     ports:
       - "3000:7860"
     volumes:
-      - /home/saukko/unify-rocm/models:/Forge/stable-diffusion-webui/models/
-      - /home/saukko/unify-rocm/embeddings:/Forge/stable-diffusion-webui/embeddings/
-      - /home/saukko/unify-rocm/outputs:/Forge/stable-diffusion-webui/outputs/
-      - /home/saukko/unify-rocm/extensions:/Forge/stable-diffusion-webui/extensions/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/models:/Forge/stable-diffusion-webui/models/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/embeddings:/Forge/stable-diffusion-webui/embeddings/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/outputs:/Forge/stable-diffusion-webui/outputs/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/extensions:/Forge/stable-diffusion-webui/extensions/
     devices:
       - '/dev/kfd:/dev/kfd'
       - '/dev/dri:/dev/dri'
@@ -32,7 +32,7 @@ services:
     container_name: rocm6.1
     build:
       context: .
-      dockerfile: dockerfile-6.1
+      dockerfile: rocm6.1/Dockerfile
       args:
         PYTORCH_ROCM_ARCH: ${PYTORCH_ROCM_ARCH}
         HSA_OVERRIDE_GFX_VERSION: ${HSA_OVERRIDE_GFX_VERSION}
@@ -62,7 +62,7 @@ services:
     container_name: rocm6.1-reforge
     build:
       context: .
-      dockerfile: dockerfile-6.1-reforge
+      dockerfile: rocm6.1-reforge/Dockerfile
       args:
         PYTORCH_ROCM_ARCH: ${PYTORCH_ROCM_ARCH}
         HSA_OVERRIDE_GFX_VERSION: ${HSA_OVERRIDE_GFX_VERSION}

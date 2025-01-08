@@ -1,0 +1,7 @@
+# Symlinked data paths
+embeddings/
+extensions/
+models/
+outputs/
+repositories/
+
