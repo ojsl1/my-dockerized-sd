@@ -18,7 +18,16 @@
 - `docker rmi <image>`
 
 #### Cleanup
-- `docker system prune -a -f`
+
+Remove all unused data
+- `docker system prune -af`
+
+Remove specific unused data
+- `docker container prune -a`
+- `docker network prune -a`
+- `docker image prune -a`
+- `docker builder prune -a`
+- `docker volume prune -a`
 
 #### Orphaned images
 Images with `<none>:<none>` indicate orphans that can be safely removed with:
@@ -28,6 +37,5 @@ Images with `<none>:<none>` indicate orphans that can be safely removed with:
 #### Untested cleanup commands
 - `docker rm -vf $(docker ps -aq)`
 - `docker rmi -f $(docker images -aq)`
-- `docker volume prune -f`
 - `docker volume rm $(docker volume ls -qf dangling=true)`
 

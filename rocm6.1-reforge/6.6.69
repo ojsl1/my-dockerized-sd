@@ -1,0 +1,500 @@
+Same timeout crash right after pressing generate, however when running `docker-compose up rocm6.1-reforge --build` again the amdgpu stack trace got printed
+
+tammi 09 14:26:14 manjaro kernel: show_signal: 2 callbacks suppressed
+tammi 09 14:26:14 manjaro kernel: traps: python3[3293] general protection fault ip:7f6781167498 sp:7ffead12e2e0 error:0 in libMIOpen.so[7f6780f55000+5928000]
+tammi 09 14:26:14 manjaro systemd-coredump[4542]: Process 3293 (python3) of user 0 terminated abnormally with signal 11/SEGV, processing...
+tammi 09 14:26:14 manjaro systemd[1]: Created slice Slice /system/systemd-coredump.
+tammi 09 14:26:14 manjaro systemd[1]: Started Process Core Dump (PID 4542/UID 0).
+tammi 09 14:26:14 manjaro systemd-coredump[4543]: Removed old coredump core.python3.0.3cd3e2285b434bcd80041188f12237c2.3415.1736424333000000.zst.
+...
+tammi 09 14:26:39 manjaro dockerd[1835]: time="2025-01-09T14:26:39.771025900+02:00" level=info msg="Container failed to exit within 10s of signal 15 - using the force" container=9e3bc1fd1d4971d9d66680a5986d1204b0fd2e2dccd847ffa7f91177f249478f spanID=71234f9c94f581fe traceID=c4f8474263fc93e302d26afe732b5e52
+tammi 09 14:26:39 manjaro dockerd[1835]: time="2025-01-09T14:26:39.836144518+02:00" level=warning msg="Container failed to exit within 10s of kill - trying direct SIGKILL" container=9e3bc1fd1d4971d9d66680a5986d1204b0fd2e2dccd847ffa7f91177f249478f error="context deadline exceeded"
+tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:27:19 manjaro systemd-coredump[4543]: [🡕] Process 3293 (python3) of user 0 dumped core.
+
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libgfortran-91cc3cb1.so.3.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libgfortran-91cc3cb1.so.3.0.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libcrypto-337dac8b.so.1.1 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libcrypto-337dac8b.so.1.1
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libssl-28bef1ac.so.1.1 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libssl-28bef1ac.so.1.1
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libvpx-c3a7933e.so.9.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libvpx-c3a7933e.so.9.0.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libswresample-2ec4394e.so.4.7.100 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libswresample-2ec4394e.so.4.7.100
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libopenblas-r0-f650aae0.3.3.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libopenblas-r0-f650aae0.3.3.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libQt5Core-e6d3f451.so.5.15.13 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libQt5Core-e6d3f451.so.5.15.13
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libQt5Gui-5dea4132.so.5.15.13 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libQt5Gui-5dea4132.so.5.15.13
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libQt5Widgets-e392eaf8.so.5.15.13 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libQt5Widgets-e392eaf8.so.5.15.13
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libswscale-2c3c8be7.so.6.7.100 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libswscale-2c3c8be7.so.6.7.100
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libavutil-a0a0531e.so.57.28.100 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libavutil-a0a0531e.so.57.28.100
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libavformat-3ff1be5b.so.59.27.100 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libavformat-3ff1be5b.so.59.27.100
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libavcodec-9aae324f.so.59.37.100 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libavcodec-9aae324f.so.59.37.100
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/cv2/cv2.abi3.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/cv2/cv2.abi3.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libQt5Test-d435aae7.so.5.15.13 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libQt5Test-d435aae7.so.5.15.13
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libpng16-1bde1c40.so.16.43.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libpng16-1bde1c40.so.16.43.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libsharpyuv.797eaa46.so.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libz.b45ecc62.so.1 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libz.b45ecc62.so.1
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libwebp.5629a66a.so.7 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libwebp.5629a66a.so.7
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libjpeg.8800febb.so.8 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libjpeg.8800febb.so.8
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libpng16.a15e423c.so.16 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libpng16.a15e423c.so.16
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision/image.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision/image.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libharfbuzz-3543f599.so.0.60710.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libharfbuzz-3543f599.so.0.60710.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libfreetype-cb9caf6f.so.6.19.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libfreetype-cb9caf6f.so.6.19.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libsharpyuv-9340467d.so.0.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libwebpdemux-785dd7eb.so.2.0.12 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libwebpmux-ddfacf1d.so.3.0.11 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libwebpmux-ddfacf1d.so.3.0.11
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libwebp-3ee34a0b.so.7.1.6 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libwebp-3ee34a0b.so.7.1.6
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/PIL/_webp.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/PIL/_webp.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/triton/_C/libtriton.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/triton/_C/libtriton.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libbrotlicommon-92722cb2.so.1 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libbrotlidec-db4b3db6.so.1.0.9 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libpng16-cb42a3c6.so.16.39.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libpng16-cb42a3c6.so.16.39.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/PIL/_imagingft.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/PIL/_imagingft.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/integrate/_lsoda.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/integrate/_lsoda.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/integrate/_dop.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/integrate/_dop.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/integrate/_vode.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/integrate/_vode.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/integrate/_odepack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/integrate/_odepack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/interpolate/_bspl.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/interpolate/_bspl.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/interpolate/_dierckx.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/interpolate/_dierckx.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/optimize/_cobyla.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/optimize/_cobyla.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/optimize/_lbfgsb.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/optimize/_lbfgsb.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/optimize/_trlib/_trlib.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/optimize/_trlib/_trlib.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/interpolate/_dfitpack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/interpolate/_dfitpack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/interpolate/_fitpack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/special/_ufuncs.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/special/_ufuncs.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy.libs/libscipy_openblas-68440149.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy.libs/libscipy_openblas-68440149.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/special/_ellip_harm_2.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/special/_ellip_harm_2.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_propack/_zpropack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_propack/_zpropack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_propack/_cpropack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_propack/_cpropack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_propack/_dpropack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_propack/_dpropack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_propack/_spropack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_propack/_spropack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_eigen/arpack/_arpack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_eigen/arpack/_arpack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_dsolve/_superlu.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_dsolve/_superlu.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/cython_blas.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/cython_blas.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/_matfuncs_expm.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/_matfuncs_expm.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/cython_lapack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/cython_lapack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/_flapack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/_flapack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy.libs/libquadmath-96973f99-934c22de.so.0.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy.libs/libquadmath-96973f99-934c22de.so.0.0.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy.libs/libgfortran-040039e1-0352e75f.so.5.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy.libs/libgfortran-040039e1-0352e75f.so.5.0.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libXau-154567c4.so.6.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libXau-154567c4.so.6.0.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/_fblas.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/_fblas.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libtiff-b9364ff1.so.6.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libtiff-b9364ff1.so.6.0.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/liblzma-95592ee6.so.5.4.2 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/liblzma-95592ee6.so.5.4.2
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libopenjp2-78c47f58.so.2.5.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libopenjp2-78c47f58.so.2.5.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libxcb-3e83370d.so.1.1.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libxcb-3e83370d.so.1.1.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libjpeg-f2134fdd.so.62.3.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libjpeg-f2134fdd.so.62.3.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/PIL/_imaging.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/PIL/_imaging.cpython-310-x86_64-linux-gnu.so
+                                                  Module [dso] without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy/linalg/_umath_linalg.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy/linalg/_umath_linalg.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy.libs/libquadmath-96973f99.so.0.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy.libs/libquadmath-96973f99.so.0.0.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy.libs/libgfortran-040039e1.so.5.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy.libs/libgfortran-040039e1.so.5.0.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy/core/_multiarray_umath.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy/core/_multiarray_umath.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libquadmath.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libquadmath.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libgfortran.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libgfortran.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libccolamd.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libccolamd.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libcolamd.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libcolamd.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libcamd.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libcamd.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libamd.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libamd.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libsatlas.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libsatlas.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libdrm_amdgpu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libdrm_amdgpu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libelf.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libelf.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtinfo.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtinfo.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libcholmod.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libcholmod.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libsuitesparseconfig.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libsuitesparseconfig.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocsparse.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocsparse.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocrand.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocrand.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocfft.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocfft.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocsolver.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocsolver.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhsa-runtime64.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhsa-runtime64.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libnuma.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libnuma.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocblas.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocblas.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libamd_comgr.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libamd_comgr.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libmagma.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libmagma.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librccl.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librccl.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libaotriton_v2.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libaotriton_v2.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipsolver.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipsolver.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipsparse.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipsparse.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhiprand.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhiprand.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipfft.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipfft.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipblas.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipblas.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhiprtc.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhiprtc.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libroctracer64.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libroctracer64.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libamdhip64.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libamdhip64.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libc10.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libc10.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipblaslt.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipblaslt.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libMIOpen.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libMIOpen.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libc10_hip.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libc10_hip.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtorch_hip.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtorch_hip.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtorch_cpu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtorch_cpu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libshm.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libshm.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtorch_python.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtorch_python.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libgomp.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libgomp.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libcaffe2_nvrtc.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtorch_global_deps.so without build-id.
+                                                  Stack trace of thread 1:
+                                                  #0  0x00007f6781167498 n/a (/ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libMIOpen.so + 0x3d20b498)
+                                                  ELF object binary architecture: AMD x86-64
+tammi 09 14:27:20 manjaro systemd[1]: systemd-coredump@0-4542-0.service: Deactivated successfully.
+tammi 09 14:27:20 manjaro systemd[1]: systemd-coredump@0-4542-0.service: Consumed 28.727s CPU time, 14.9G memory peak.
+tammi 09 14:28:54 manjaro PackageKit[2255]: uid 1000 is trying to obtain org.freedesktop.packagekit.system-sources-refresh auth (only_trusted:0)
+tammi 09 14:28:54 manjaro PackageKit[2255]: uid 1000 obtained auth for org.freedesktop.packagekit.system-sources-refresh
+tammi 09 14:28:54 manjaro PackageKit[2255]: refresh-cache transaction /3_cbdeeacc from uid 1000 finished with success after 0ms
+tammi 09 14:28:55 manjaro PackageKit[2255]: get-updates transaction /4_ededeaad from uid 1000 finished with success after 1ms
+tammi 09 14:29:06 manjaro NetworkManager[951]: <info>  [1736425746.3375] manager: (veth8cdc864): new Veth device (/org/freedesktop/NetworkManager/Devices/10)
+tammi 09 14:29:06 manjaro NetworkManager[951]: <info>  [1736425746.3381] manager: (veth12d03f1): new Veth device (/org/freedesktop/NetworkManager/Devices/11)
+tammi 09 14:29:06 manjaro kernel: br-6fc2d944620f: port 1(veth12d03f1) entered blocking state
+tammi 09 14:29:06 manjaro kernel: br-6fc2d944620f: port 1(veth12d03f1) entered disabled state
+tammi 09 14:29:06 manjaro kernel: veth12d03f1: entered allmulticast mode
+tammi 09 14:29:06 manjaro kernel: veth12d03f1: entered promiscuous mode
+tammi 09 14:29:06 manjaro dockerd[1835]: time="2025-01-09T14:29:06.359415511+02:00" level=warning msg="Security options with `:` as a separator are deprecated and will be completely unsupported in 17.04, use `=` instead."
+tammi 09 14:29:06 manjaro dockerd[1835]: time="2025-01-09T14:29:06.359428566+02:00" level=warning msg="Security options with `:` as a separator are deprecated and will be completely unsupported in 17.04, use `=` instead."
+tammi 09 14:29:06 manjaro containerd[1028]: time="2025-01-09T14:29:06.366061730+02:00" level=info msg="connecting to shim 9e3bc1fd1d4971d9d66680a5986d1204b0fd2e2dccd847ffa7f91177f249478f" address="unix:///run/containerd/s/7835851779922c6edf3d6c3dd806f3b0c510d27f04c2a43e02bf393d46ed332c" namespace=moby protocol=ttrpc version=3
+tammi 09 14:29:06 manjaro systemd[1]: Started libcontainer container 9e3bc1fd1d4971d9d66680a5986d1204b0fd2e2dccd847ffa7f91177f249478f.
+tammi 09 14:29:06 manjaro kernel: eth0: renamed from veth8cdc864
+tammi 09 14:29:06 manjaro NetworkManager[951]: <info>  [1736425746.5534] device (veth12d03f1): carrier: link connected
+tammi 09 14:29:06 manjaro NetworkManager[951]: <info>  [1736425746.5535] device (br-6fc2d944620f): carrier: link connected
+tammi 09 14:29:06 manjaro kernel: br-6fc2d944620f: port 1(veth12d03f1) entered blocking state
+tammi 09 14:29:06 manjaro kernel: br-6fc2d944620f: port 1(veth12d03f1) entered forwarding state
+tammi 09 14:29:07 manjaro avahi-daemon[908]: Joining mDNS multicast group on interface veth12d03f1.IPv6 with address fe80::60fa:71ff:fe69:a2bb.
+tammi 09 14:29:07 manjaro avahi-daemon[908]: New relevant interface veth12d03f1.IPv6 for mDNS.
+tammi 09 14:29:07 manjaro avahi-daemon[908]: Registering new address record for fe80::60fa:71ff:fe69:a2bb on veth12d03f1.*.
+tammi 09 14:29:10 manjaro kernel: ------------[ cut here ]------------
+tammi 09 14:29:10 manjaro kernel: Bad FPU state detected at restore_fpregs_from_fpstate+0x3e/0x90, reinitializing FPU registers.
+tammi 09 14:29:10 manjaro kernel: WARNING: CPU: 9 PID: 4961 at arch/x86/mm/extable.c:126 fixup_exception+0x2d8/0x310
+tammi 09 14:29:10 manjaro kernel: Modules linked in: xt_nat xt_tcpudp veth rpcsec_gss_krb5 auth_rpcgss nfsv4 dns_resolver nfs lockd grace sunrpc fscache netfs xt_conntrack xt_MASQUERADE nf_conntrack_netlink ip6table_nat ip6table_filter ip6_tables iptable_nat xt_addrtype iptable_filter rfcomm snd_seq_dummy snd_hrtimer snd_seq nft_reject_ipv4 act_csum cls_u32 sch_htb bridge stp llc overlay qrtr uhid cmac algif_hash algif_skcipher af_alg bnep ip_set_hash_ip ip_set mousedev joydev intel_rapl_msr intel_rapl_common edac_mce_amd kvm_amd iwlmvm btusb vfat fat kvm btrtl mac80211 btintel irqbypass btbcm crct10dif_pclmul btmtk crc32_pclmul polyval_clmulni libarc4 snd_hda_codec_hdmi polyval_generic gf128mul bluetooth ghash_clmulni_intel snd_hda_intel sha512_ssse3 iwlwifi usbhid ecdh_generic snd_virtuoso sha256_ssse3 snd_intel_dspcfg sha1_ssse3 snd_oxygen_lib snd_intel_sdw_acpi aesni_intel snd_mpu401_uart eeepc_wmi snd_hda_codec snd_rawmidi asus_wmi crypto_simd asus_wmi_sensors snd_hda_core asus_ec_sensors snd_hwdep snd_seq_device ledtrig_audio cryptd
+tammi 09 14:29:10 manjaro kernel:  sparse_keymap cfg80211 snd_pcm platform_profile rapl snd_timer i8042 igb wmi_bmof mxm_wmi rfkill snd pcspkr soundcore ccp dca zenpower(OE) i2c_piix4 gpio_amdpt gpio_generic ryzen_smu(OE) mac_hid nft_reject_inet nf_reject_ipv4 nf_reject_ipv6 nft_reject nft_masq nft_ct nft_chain_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 uinput vboxnetflt(OE) vboxnetadp(OE) nf_tables libcrc32c vboxdrv(OE) i2c_dev sg crypto_user fuse dm_mod loop nfnetlink bpf_preload ip_tables x_tables ext4 crc32c_generic crc16 mbcache jbd2 nvme crc32c_intel nvme_core xhci_pci xhci_pci_renesas nvme_common atkbd libps2 serio vivaldi_fmap firewire_ohci firewire_core crc_itu_t amdgpu i2c_algo_bit drm_ttm_helper ttm video wmi drm_exec drm_suballoc_helper amdxcp drm_buddy gpu_sched drm_display_helper cec
+tammi 09 14:29:10 manjaro kernel: CPU: 9 PID: 4961 Comm: (udev-worker) Tainted: G           OE      6.6.69-1-MANJARO #1 d4ce6f2c08b404cbdab42364a7a35a048fc58840
+tammi 09 14:29:10 manjaro kernel: Hardware name: System manufacturer System Product Name/PRIME X470-PRO, BIOS 6210 09/04/2023
+tammi 09 14:29:10 manjaro kernel: RIP: 0010:fixup_exception+0x2d8/0x310
+tammi 09 14:29:10 manjaro kernel: Code: 2e fb ff ff e9 55 fe ff ff 0f 0b 48 c7 c2 f8 6d 69 b7 e9 1f ff ff ff 48 c7 c7 30 cd 45 b6 c6 05 70 ba 12 02 01 e8 98 bd 01 00 <0f> 0b eb bd 0f 0b 48 c7 c2 f8 6d 69 b7 e9 ec fd ff ff 83 f8 0c 74
+tammi 09 14:29:10 manjaro kernel: RSP: 0018:ffffbfc88c04fa68 EFLAGS: 00010082
+tammi 09 14:29:10 manjaro kernel: RAX: 0000000000000000 RBX: ffffffffb65bb908 RCX: 0000000000000027
+tammi 09 14:29:10 manjaro kernel: RDX: ffff9e10ef061708 RSI: 0000000000000001 RDI: ffff9e10ef061700
+tammi 09 14:29:10 manjaro kernel: RBP: 000000000000000d R08: 0000000000000000 R09: ffffbfc88c04f8d8
+tammi 09 14:29:10 manjaro kernel: R10: ffffffffb6cb26c8 R11: 0000000000000003 R12: 0000000000000000
+tammi 09 14:29:10 manjaro kernel: R13: ffffbfc88c04fb68 R14: 0000000000000000 R15: 0000000000000000
+tammi 09 14:29:10 manjaro kernel: FS:  00007f9d2f885880(0000) GS:ffff9e10ef040000(0000) knlGS:0000000000000000
+tammi 09 14:29:10 manjaro kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+tammi 09 14:29:10 manjaro kernel: CR2: 00007efc302b0ef0 CR3: 0000000112282000 CR4: 0000000000f50ea0
+tammi 09 14:29:10 manjaro kernel: PKRU: 55555554
+tammi 09 14:29:10 manjaro kernel: Call Trace:
+tammi 09 14:29:10 manjaro kernel:  <TASK>
+tammi 09 14:29:10 manjaro kernel:  ? fixup_exception+0x2d8/0x310
+tammi 09 14:29:10 manjaro kernel:  ? __warn+0x81/0x130
+tammi 09 14:29:10 manjaro kernel:  ? fixup_exception+0x2d8/0x310
+tammi 09 14:29:10 manjaro kernel:  ? report_bug+0x16f/0x1a0
+tammi 09 14:29:10 manjaro kernel:  ? handle_bug+0x58/0x90
+tammi 09 14:29:10 manjaro kernel:  ? exc_invalid_op+0x17/0x70
+tammi 09 14:29:10 manjaro kernel:  ? asm_exc_invalid_op+0x1a/0x20
+tammi 09 14:29:10 manjaro kernel:  ? fixup_exception+0x2d8/0x310
+tammi 09 14:29:10 manjaro kernel:  ? fixup_exception+0x2d8/0x310
+tammi 09 14:29:10 manjaro kernel:  gp_try_fixup_and_notify+0x1e/0xc0
+tammi 09 14:29:10 manjaro kernel:  exc_general_protection+0x103/0x430
+tammi 09 14:29:10 manjaro kernel:  ? schedule_hrtimeout_range_clock+0x1cb/0x1e0
+tammi 09 14:29:10 manjaro kernel:  asm_exc_general_protection+0x26/0x30
+tammi 09 14:29:10 manjaro kernel: RIP: 0010:restore_fpregs_from_fpstate+0x3e/0x90
+tammi 09 14:29:10 manjaro kernel: Code: 09 cc cc cc db e2 0f 77 db 07 0f 1f 44 00 00 66 90 48 8b 05 ac 86 8b 01 48 8d 7b 40 48 21 e8 48 89 c2 48 c1 ea 20 48 0f c7 1f <5b> 5d 41 5c e9 54 8f 0b 01 48 0f ae 4b 40 5b 5d 41 5c e9 46 8f 0b
+tammi 09 14:29:10 manjaro kernel: RSP: 0018:ffffbfc88c04fc18 EFLAGS: 00010056
+tammi 09 14:29:10 manjaro kernel: RAX: 0000000000000807 RBX: ffff9dfa9310be40 RCX: 0000000000000009
+tammi 09 14:29:10 manjaro kernel: RDX: 0000000000000000 RSI: 0000000000060cff RDI: ffff9dfa9310be80
+tammi 09 14:29:10 manjaro kernel: RBP: 0000000000060cff R08: 0000000000000000 R09: 0000000000000000
+tammi 09 14:29:10 manjaro kernel: R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000009
+tammi 09 14:29:10 manjaro kernel: R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+tammi 09 14:29:10 manjaro kernel:  switch_fpu_return+0x4f/0xe0
+tammi 09 14:29:10 manjaro kernel:  exit_to_user_mode_prepare+0x132/0x1f0
+tammi 09 14:29:10 manjaro kernel:  syscall_exit_to_user_mode+0x1b/0x40
+tammi 09 14:29:10 manjaro kernel:  do_syscall_64+0x66/0x80
+tammi 09 14:29:10 manjaro kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
+tammi 09 14:29:10 manjaro kernel:  ? sock_def_readable+0x42/0xc0
+tammi 09 14:29:10 manjaro kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
+tammi 09 14:29:10 manjaro kernel:  ? unix_dgram_sendmsg+0x623/0xae0
+tammi 09 14:29:10 manjaro kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
+tammi 09 14:29:10 manjaro kernel:  ? sock_write_iter+0x193/0x1a0
+tammi 09 14:29:10 manjaro kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
+tammi 09 14:29:10 manjaro kernel:  ? vfs_write+0x36e/0x410
+tammi 09 14:29:10 manjaro kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
+tammi 09 14:29:10 manjaro kernel:  ? ksys_write+0xb9/0xf0
+tammi 09 14:29:10 manjaro kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
+tammi 09 14:29:10 manjaro kernel:  ? syscall_exit_to_user_mode+0x22/0x40
+tammi 09 14:29:10 manjaro kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
+tammi 09 14:29:10 manjaro kernel:  ? do_syscall_64+0x66/0x80
+tammi 09 14:29:10 manjaro kernel:  ? srso_alias_return_thunk+0x5/0xfbef5
+tammi 09 14:29:10 manjaro kernel:  ? __irq_exit_rcu+0x4b/0xc0
+tammi 09 14:29:10 manjaro kernel:  entry_SYSCALL_64_after_hwframe+0x78/0xe2
+tammi 09 14:29:10 manjaro kernel: RIP: 0033:0x7f9d2f328877
+tammi 09 14:29:10 manjaro kernel: Code: 0c 00 f7 d8 64 89 02 b8 ff ff ff ff eb be 0f 1f 44 00 00 f3 0f 1e fa 80 3d f5 57 0d 00 00 41 89 ca 74 10 b8 e8 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 51 c3 55 48 89 e5 48 83 ec 20 89 55 f8 48 89
+tammi 09 14:29:10 manjaro kernel: RSP: 002b:00007ffc737cac98 EFLAGS: 00000202 ORIG_RAX: 00000000000000e8
+tammi 09 14:29:10 manjaro kernel: RAX: 0000000000000001 RBX: 0000000000000006 RCX: 00007f9d2f328877
+tammi 09 14:29:10 manjaro kernel: RDX: 0000000000000006 RSI: 0000563e4bf6afe0 RDI: 000000000000002c
+tammi 09 14:29:10 manjaro kernel: RBP: 00007ffc737cadc0 R08: 0000563e4bd63010 R09: 000000000000002c
+tammi 09 14:29:10 manjaro kernel: R10: 00000000ffffffff R11: 0000000000000202 R12: 0000563e4bf6afe0
+tammi 09 14:29:10 manjaro kernel: R13: 0000563e4bf63d90 R14: 0000000000000002 R15: ffffffffffffffff
+tammi 09 14:29:10 manjaro kernel:  </TASK>
+tammi 09 14:29:10 manjaro kernel: ---[ end trace 0000000000000000 ]---
+
+
+Right after the page faults, removing config.json and ui-config.json from the container, and uncommenting the COPY config lines
+tammi 09 14:37:18 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:37:18 manjaro kernel: [drm:amdgpu_mes_set_shader_debugger [amdgpu]] *ERROR* failed to set_shader_debugger
+tammi 09 14:37:19 manjaro avahi-daemon[908]: Joining mDNS multicast group on interface vethad8723a.IPv6 with address fe80::88cb:e1ff:fe8d:a282.
+tammi 09 14:37:19 manjaro avahi-daemon[908]: New relevant interface vethad8723a.IPv6 for mDNS.
+tammi 09 14:37:19 manjaro avahi-daemon[908]: Registering new address record for fe80::88cb:e1ff:fe8d:a282 on vethad8723a.*.
+tammi 09 14:37:19 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:37:19 manjaro kernel: [drm:amdgpu_mes_flush_shader_debugger [amdgpu]] *ERROR* failed to set_shader_debugger
+tammi 09 14:37:25 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:37:25 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:37:25 manjaro kwin_wayland[1278]: kwin_scene_opengl: 0x2: GL_INVALID_OPERATION in glDrawBuffers(unsupported buffer GL_BACK_LEFT)
+tammi 09 14:37:25 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:37:25 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:37:25 manjaro kwin_wayland[1278]: kwin_scene_opengl: 0x2: GL_INVALID_OPERATION in glDrawBuffers(unsupported buffer GL_BACK_LEFT)
+tammi 09 14:37:25 manjaro kwin_wayland[1278]: kwin_scene_opengl: 0x2: GL_INVALID_OPERATION in glDrawBuffers(unsupported buffer GL_BACK_LEFT)
+tammi 09 14:37:25 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:37:25 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:37:25 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:37:25 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:37:45 manjaro rtkit-daemon[1416]: Supervising 1 threads of 1 processes of 1 users.
+tammi 09 14:37:45 manjaro rtkit-daemon[1416]: Supervising 1 threads of 1 processes of 1 users.
+tammi 09 14:38:37 manjaro systemd[1]: Starting Cleanup of Temporary Directories...
+tammi 09 14:38:37 manjaro systemd[1]: systemd-tmpfiles-clean.service: Deactivated successfully.
+tammi 09 14:38:37 manjaro systemd[1]: Finished Cleanup of Temporary Directories.
+tammi 09 14:38:46 manjaro mullvad-daemon[985]: [mullvad_daemon::api_address_updater][DEBUG] Fetched new API address 45.83.223.196:443. Fetching again in 24 hours
+tammi 09 14:39:00 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:39:00 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:39:00 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:39:00 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:39:00 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:39:00 manjaro kernel: [drm:amdgpu_mes_set_shader_debugger [amdgpu]] *ERROR* failed to set_shader_debugger
+tammi 09 14:39:01 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:39:01 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:39:01 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:39:01 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:39:01 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=2
+tammi 09 14:39:01 manjaro kernel: amdgpu: failed to add hardware queue to MES, doorbell=0x1000
+tammi 09 14:39:01 manjaro kernel: amdgpu: MES might be in unrecoverable state, issue a GPU reset
+tammi 09 14:39:01 manjaro kernel: amdgpu: Pasid 0x8013 DQM create queue type 0 failed. ret -110
+tammi 09 14:39:01 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GPU reset begin!
+tammi 09 14:39:01 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:39:01 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:39:01 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:39:01 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:39:02 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=3
+tammi 09 14:39:02 manjaro kernel: [drm:amdgpu_mes_unmap_legacy_queue [amdgpu]] *ERROR* failed to unmap legacy queue
+tammi 09 14:39:02 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:39:02 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:39:02 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=3
+tammi 09 14:39:02 manjaro kernel: [drm:amdgpu_mes_unmap_legacy_queue [amdgpu]] *ERROR* failed to unmap legacy queue
+tammi 09 14:39:02 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:39:02 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:39:02 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=3
+tammi 09 14:39:02 manjaro kernel: [drm:amdgpu_mes_unmap_legacy_queue [amdgpu]] *ERROR* failed to unmap legacy queue
+tammi 09 14:39:02 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:39:02 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:39:02 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=3
+tammi 09 14:39:02 manjaro kernel: [drm:amdgpu_mes_unmap_legacy_queue [amdgpu]] *ERROR* failed to unmap legacy queue
+tammi 09 14:39:02 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:39:02 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:39:02 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=3
+tammi 09 14:39:02 manjaro kernel: [drm:amdgpu_mes_unmap_legacy_queue [amdgpu]] *ERROR* failed to unmap legacy queue
+tammi 09 14:39:02 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:39:02 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:39:02 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=3
+tammi 09 14:39:02 manjaro kernel: [drm:amdgpu_mes_unmap_legacy_queue [amdgpu]] *ERROR* failed to unmap legacy queue
+tammi 09 14:39:02 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:39:02 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:39:02 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=3
+tammi 09 14:39:02 manjaro kernel: [drm:amdgpu_mes_unmap_legacy_queue [amdgpu]] *ERROR* failed to unmap legacy queue
+tammi 09 14:39:02 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:39:02 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:39:02 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=3
+tammi 09 14:39:02 manjaro kernel: [drm:amdgpu_mes_unmap_legacy_queue [amdgpu]] *ERROR* failed to unmap legacy queue
+tammi 09 14:39:03 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:39:03 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:39:03 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=3
+tammi 09 14:39:03 manjaro kernel: [drm:amdgpu_mes_unmap_legacy_queue [amdgpu]] *ERROR* failed to unmap legacy queue
+tammi 09 14:39:03 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:39:03 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:39:03 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:39:03 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+tammi 09 14:39:03 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: MODE1 reset
+tammi 09 14:39:03 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GPU mode1 reset
+tammi 09 14:39:03 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GPU smu mode1 reset
+tammi 09 14:39:03 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GPU reset succeeded, trying to resume
+tammi 09 14:39:03 manjaro kernel: [drm] PCIE GART of 512M enabled (table at 0x0000008000300000).
+tammi 09 14:39:03 manjaro kernel: [drm] VRAM is lost due to GPU reset!
+tammi 09 14:39:03 manjaro kernel: [drm] PSP is resuming...
+tammi 09 14:39:03 manjaro kernel: [drm] reserve 0x1300000 from 0x85fc000000 for PSP TMR
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: RAP: optional rap ta ucode is not available
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: SECUREDISPLAY: securedisplay ta ucode is not available
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: SMU is resuming...
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: smu driver if version = 0x0000003d, smu fw if version = 0x00000040, smu fw program = 0, smu fw version = 0x004e8000 (78.128.0)
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: SMU driver if version not matched
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: SMU is resumed successfully!
+tammi 09 14:39:04 manjaro kernel: [drm] kiq ring mec 3 pipe 1 q 0
+tammi 09 14:39:04 manjaro kernel: [drm] VCN decode and encode initialized successfully(under DPG Mode).
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: [drm:jpeg_v4_0_hw_init [amdgpu]] JPEG decode initialized successfully.
+tammi 09 14:39:04 manjaro kernel: [drm] DMUB hardware initialized: version=0x07002A00
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: ring gfx_0.0.0 uses VM inv eng 0 on hub 0
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: ring comp_1.0.0 uses VM inv eng 1 on hub 0
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: ring comp_1.1.0 uses VM inv eng 4 on hub 0
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: ring comp_1.2.0 uses VM inv eng 6 on hub 0
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: ring comp_1.3.0 uses VM inv eng 7 on hub 0
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: ring comp_1.0.1 uses VM inv eng 8 on hub 0
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: ring comp_1.1.1 uses VM inv eng 9 on hub 0
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: ring comp_1.2.1 uses VM inv eng 10 on hub 0
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: ring comp_1.3.1 uses VM inv eng 11 on hub 0
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: ring sdma0 uses VM inv eng 12 on hub 0
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: ring sdma1 uses VM inv eng 13 on hub 0
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: ring vcn_unified_0 uses VM inv eng 0 on hub 8
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: ring vcn_unified_1 uses VM inv eng 1 on hub 8
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: ring jpeg_dec uses VM inv eng 4 on hub 8
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: ring mes_kiq_3.1.0 uses VM inv eng 14 on hub 0
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: recover vram bo from shadow start
+tammi 09 14:39:04 manjaro kitty[2601]: amdgpu: The CS has cancelled because the context is lost. This context is innocent.
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: recover vram bo from shadow done
+tammi 09 14:39:04 manjaro kernel: [drm] ring gfx_32790.1.1 was added
+tammi 09 14:39:04 manjaro kernel: [drm] ring compute_32790.2.2 was added
+tammi 09 14:39:04 manjaro kernel: [drm] ring sdma_32790.3.3 was added
+tammi 09 14:39:04 manjaro kernel: [drm] ring gfx_32790.1.1 ib test pass
+tammi 09 14:39:04 manjaro kernel: [drm] ring compute_32790.2.2 ib test pass
+tammi 09 14:39:04 manjaro kernel: [drm] ring sdma_32790.3.3 ib test pass
+tammi 09 14:39:04 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GPU reset(1) succeeded!
+

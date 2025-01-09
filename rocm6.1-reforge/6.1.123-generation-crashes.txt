@@ -1,0 +1,279 @@
+After pressing generate, gpu didnt start computing, sd crashed after having timed out or something
+Note there were no amdgpu pagefaults that were printed with 6.12
+
+tammi 09 14:05:33 manjaro kernel: traps: python3[3415] general protection fault ip:7fe049367498 sp:7ffdce3c4c00 error:0 in libMIOpen.so[7fe049155000+5928000]
+tammi 09 14:05:33 manjaro systemd-coredump[4865]: Process 3415 (python3) of user 0 terminated abnormally with signal 11/SEGV, processing...
+tammi 09 14:05:33 manjaro systemd[1]: Created slice Slice /system/systemd-coredump.
+tammi 09 14:05:33 manjaro systemd[1]: Started Process Core Dump (PID 4865/UID 0).
+tammi 09 14:05:33 manjaro systemd-coredump[4866]: Removed old coredump core.python3.0.23e95cca22284e9aa4201850a4384380.25911.1736423790000000.zst.
+tammi 09 14:05:33 manjaro kernel: traps: python3[3415] general protection fault ip:7fe049367498 sp:7ffdce3c4c00 error:0 in libMIOpen.so[7fe049155000+5928000]
+tammi 09 14:05:33 manjaro systemd-coredump[4865]: Process 3415 (python3) of user 0 terminated abnormally with signal 11/SEGV, processing...
+tammi 09 14:05:33 manjaro systemd[1]: Created slice Slice /system/systemd-coredump.
+tammi 09 14:05:33 manjaro systemd[1]: Started Process Core Dump (PID 4865/UID 0).
+tammi 09 14:05:33 manjaro systemd-coredump[4866]: Removed old coredump core.python3.0.23e95cca22284e9aa4201850a4384380.25911.1736423790000000.zst.A
+tammi 09 14:07:06 manjaro (sd-parse-elf)[5062]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:07:06 manjaro (sd-parse-elf)[5062]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:07:06 manjaro (sd-parse-elf)[5062]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:07:06 manjaro (sd-parse-elf)[5062]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:07:06 manjaro (sd-parse-elf)[5062]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:07:06 manjaro (sd-parse-elf)[5062]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:07:06 manjaro (sd-parse-elf)[5062]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:07:06 manjaro (sd-parse-elf)[5062]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:07:06 manjaro (sd-parse-elf)[5062]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:07:06 manjaro (sd-parse-elf)[5062]: Could not parse number of program headers from core file: invalid `Elf' handle
+tammi 09 14:07:06 manjaro systemd-coredump[4866]: [🡕] Process 3415 (python3) of user 0 dumped core.
+
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module [dso] without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libgfortran-91cc3cb1.so.3.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libgfortran-91cc3cb1.so.3.0.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libcrypto-337dac8b.so.1.1 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libcrypto-337dac8b.so.1.1
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libssl-28bef1ac.so.1.1 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libssl-28bef1ac.so.1.1
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libvpx-c3a7933e.so.9.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libvpx-c3a7933e.so.9.0.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libswresample-2ec4394e.so.4.7.100 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libswresample-2ec4394e.so.4.7.100
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libopenblas-r0-f650aae0.3.3.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libopenblas-r0-f650aae0.3.3.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libQt5Core-e6d3f451.so.5.15.13 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libQt5Core-e6d3f451.so.5.15.13
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libQt5Gui-5dea4132.so.5.15.13 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libQt5Gui-5dea4132.so.5.15.13
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libQt5Widgets-e392eaf8.so.5.15.13 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libQt5Widgets-e392eaf8.so.5.15.13
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libswscale-2c3c8be7.so.6.7.100 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libswscale-2c3c8be7.so.6.7.100
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libavutil-a0a0531e.so.57.28.100 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libavutil-a0a0531e.so.57.28.100
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libavformat-3ff1be5b.so.59.27.100 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libavformat-3ff1be5b.so.59.27.100
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libavcodec-9aae324f.so.59.37.100 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libavcodec-9aae324f.so.59.37.100
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/cv2/cv2.abi3.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/cv2/cv2.abi3.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libQt5Test-d435aae7.so.5.15.13 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libQt5Test-d435aae7.so.5.15.13
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libpng16-1bde1c40.so.16.43.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/opencv_contrib_python.libs/libpng16-1bde1c40.so.16.43.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libsharpyuv.797eaa46.so.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libz.b45ecc62.so.1 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libz.b45ecc62.so.1
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libwebp.5629a66a.so.7 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libwebp.5629a66a.so.7
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libjpeg.8800febb.so.8 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libjpeg.8800febb.so.8
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libpng16.a15e423c.so.16 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision.libs/libpng16.a15e423c.so.16
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision/image.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torchvision/image.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libharfbuzz-3543f599.so.0.60710.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libharfbuzz-3543f599.so.0.60710.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libfreetype-cb9caf6f.so.6.19.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libfreetype-cb9caf6f.so.6.19.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libsharpyuv-9340467d.so.0.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libwebpdemux-785dd7eb.so.2.0.12 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libwebpmux-ddfacf1d.so.3.0.11 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libwebpmux-ddfacf1d.so.3.0.11
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libwebp-3ee34a0b.so.7.1.6 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libwebp-3ee34a0b.so.7.1.6
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/PIL/_webp.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/PIL/_webp.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/triton/_C/libtriton.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/triton/_C/libtriton.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libbrotlicommon-92722cb2.so.1 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libbrotlidec-db4b3db6.so.1.0.9 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libpng16-cb42a3c6.so.16.39.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libpng16-cb42a3c6.so.16.39.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/PIL/_imagingft.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/PIL/_imagingft.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/integrate/_lsoda.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/integrate/_lsoda.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/integrate/_dop.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/integrate/_dop.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/integrate/_vode.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/integrate/_vode.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/integrate/_odepack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/integrate/_odepack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/interpolate/_bspl.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/interpolate/_bspl.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/interpolate/_dierckx.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/interpolate/_dierckx.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/optimize/_cobyla.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/optimize/_cobyla.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/optimize/_lbfgsb.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/optimize/_lbfgsb.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/optimize/_trlib/_trlib.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/optimize/_trlib/_trlib.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/interpolate/_dfitpack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/interpolate/_dfitpack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/special/_ufuncs.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/special/_ufuncs.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy.libs/libscipy_openblas-68440149.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy.libs/libscipy_openblas-68440149.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/interpolate/_fitpack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_propack/_zpropack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_propack/_zpropack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_propack/_cpropack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_propack/_cpropack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_propack/_dpropack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_propack/_dpropack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_propack/_spropack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_propack/_spropack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_eigen/arpack/_arpack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_eigen/arpack/_arpack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_dsolve/_superlu.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/sparse/linalg/_dsolve/_superlu.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/cython_blas.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/cython_blas.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/_matfuncs_expm.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/_matfuncs_expm.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/cython_lapack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/cython_lapack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/_flapack.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/_flapack.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy.libs/libquadmath-96973f99-934c22de.so.0.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy.libs/libquadmath-96973f99-934c22de.so.0.0.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy.libs/libgfortran-040039e1-0352e75f.so.5.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy.libs/libgfortran-040039e1-0352e75f.so.5.0.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libXau-154567c4.so.6.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libXau-154567c4.so.6.0.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/_fblas.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/linalg/_fblas.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/special/_ellip_harm_2.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/scipy/special/_ellip_harm_2.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libtiff-b9364ff1.so.6.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libtiff-b9364ff1.so.6.0.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libopenjp2-78c47f58.so.2.5.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libopenjp2-78c47f58.so.2.5.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libjpeg-f2134fdd.so.62.3.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libjpeg-f2134fdd.so.62.3.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/liblzma-95592ee6.so.5.4.2 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/liblzma-95592ee6.so.5.4.2
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/PIL/_imaging.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/PIL/_imaging.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libxcb-3e83370d.so.1.1.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/Pillow.libs/libxcb-3e83370d.so.1.1.0
+                                                  Module [dso] without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy/linalg/_umath_linalg.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy/linalg/_umath_linalg.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy.libs/libquadmath-96973f99.so.0.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy.libs/libquadmath-96973f99.so.0.0.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy.libs/libgfortran-040039e1.so.5.0.0 without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy.libs/libgfortran-040039e1.so.5.0.0
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy/core/_multiarray_umath.cpython-310-x86_64-linux-gnu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/numpy/core/_multiarray_umath.cpython-310-x86_64-linux-gnu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libquadmath.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libquadmath.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libgfortran.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libgfortran.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libccolamd.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libccolamd.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libcolamd.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libcolamd.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libcamd.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libcamd.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libamd.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libamd.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libsatlas.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libsatlas.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libdrm_amdgpu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libdrm_amdgpu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libelf.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libelf.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtinfo.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtinfo.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libcholmod.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libcholmod.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libsuitesparseconfig.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libsuitesparseconfig.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocsparse.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocsparse.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocrand.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocrand.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocfft.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocfft.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocsolver.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocsolver.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhsa-runtime64.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhsa-runtime64.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libnuma.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libnuma.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocblas.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librocblas.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libamd_comgr.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libamd_comgr.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libmagma.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libmagma.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librccl.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/librccl.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libaotriton_v2.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libaotriton_v2.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipsolver.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipsolver.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipsparse.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipsparse.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhiprand.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhiprand.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipfft.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipfft.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipblas.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipblas.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhiprtc.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhiprtc.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libroctracer64.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libroctracer64.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libamdhip64.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libamdhip64.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libc10.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libc10.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipblaslt.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libhipblaslt.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libMIOpen.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libMIOpen.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libc10_hip.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libc10_hip.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtorch_hip.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtorch_hip.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtorch_cpu.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtorch_cpu.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libshm.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libshm.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtorch_python.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtorch_python.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libgomp.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libgomp.so
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libcaffe2_nvrtc.so without build-id.
+                                                  Module /ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libtorch_global_deps.so without build-id.
+                                                  Stack trace of thread 1:
+                                                  #0  0x00007fe049367498 n/a (/ReForge/stable-diffusion-webui-reForge/venv/lib/python3.10/site-packages/torch/lib/libMIOpen.so + 0x3d20b498)
+                                                  ELF object binary architecture: AMD x86-64
+tammi 09 14:07:07 manjaro systemd[1]: systemd-coredump@0-4865-0.service: Deactivated successfully.
+tammi 09 14:07:07 manjaro systemd[1]: systemd-coredump@0-4865-0.service: Consumed 33.984s CPU time, 15.1G memory peak.
+tammi 09 14:07:07 manjaro systemd[1]: docker-9e3bc1fd1d4971d9d66680a5986d1204b0fd2e2dccd847ffa7f91177f249478f.scope: Deactivated successfully.
+tammi 09 14:07:07 manjaro systemd[1]: docker-9e3bc1fd1d4971d9d66680a5986d1204b0fd2e2dccd847ffa7f91177f249478f.scope: Consumed 46.867s CPU time, 16.7G memory peak, 8.4G read from disk, 14.5M written to disk.

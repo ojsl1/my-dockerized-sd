@@ -1,0 +1,56 @@
+## First attempt:
+#### docker output
+```
+rocm6.1-reforge  | To load target model SDXLClipModel
+rocm6.1-reforge  | Begin to load 1 model
+rocm6.1-reforge  | Reuse 1 loaded models
+rocm6.1-reforge  | [Memory Management] Current Free GPU Memory (MB) =  22465.93359375
+rocm6.1-reforge  | [Memory Management] Model Memory (MB) =  0.0
+rocm6.1-reforge  | [Memory Management] Minimal Inference Memory (MB) =  1024.0
+rocm6.1-reforge  | [Memory Management] Estimated Remaining GPU Memory (MB) =  21441.93359375
+rocm6.1-reforge  | Moving model(s) has taken 0.52 seconds
+rocm6.1-reforge  | To load target model SDXL
+rocm6.1-reforge  | Begin to load 1 model
+rocm6.1-reforge  | [Memory Management] Current Free GPU Memory (MB) =  22416.67724609375
+rocm6.1-reforge  | [Memory Management] Model Memory (MB) =  4897.086494445801
+rocm6.1-reforge  | [Memory Management] Minimal Inference Memory (MB) =  1024.0
+rocm6.1-reforge  | [Memory Management] Estimated Remaining GPU Memory (MB) =  16495.59075164795
+rocm6.1-reforge  | Moving model(s) has taken 1.60 seconds
+  0%|          | 0/50 [00:00<?, ?it/s]
+rocm6.1-reforge exited with code 139        @12:56:36
+```
+#### journalctl output
+```
+tammi 09 12:55:19 manjaro kernel: traps: python3[14687] general protection fault ip:75ae6a3c5498 sp:7ffcdb02ab50 error:0 in libMIOpen.so[3d20a498,75ae6a1b3000+5928000]
+tammi 09 12:55:19 manjaro systemd-coredump[19890]: Process 14687 (python3) of user 0 terminated abnormally with signal 11/SEGV, processing...
+tammi 09 12:55:19 manjaro systemd[1]: Created slice Slice /system/systemd-coredump.
+tammi 09 12:55:19 manjaro systemd[1]: Started Process Core Dump (PID 19890/UID 0).
+tammi 09 12:56:34 manjaro systemd-coredump[19891]: [🡕] Process 14687 (python3) of user 0 dumped core.
+
+                                                   Stack trace of thread 1:
+                                                   #0  0x000075ae6a3c5498 n/a (n/a + 0x0)
+                                                   ELF object binary architecture: AMD x86-64
+tammi 09 12:56:36 manjaro systemd[1]: systemd-coredump@0-19890-0.service: Deactivated successfully.
+tammi 09 12:56:36 manjaro systemd[1]: systemd-coredump@0-19890-0.service: Consumed 29.158s CPU time, 15.5G memory peak.
+tammi 09 12:56:36 manjaro systemd[1]: docker-9e3bc1fd1d4971d9d66680a5986d1204b0fd2e2dccd847ffa7f91177f249478f.scope: Deactivated successfully.
+tammi 09 12:56:36 manjaro systemd[1]: docker-9e3bc1fd1d4971d9d66680a5986d1204b0fd2e2dccd847ffa7f91177f249478f.scope: Consumed 2min 24.421s CPU time, 12.2G memory peak, 2.2G read from disk, 1.5G written to disk.
+```
+
+
+## Another attempt:
+#### journalctl output
+```
+tammi 09 13:56:30 manjaro kernel: show_signal_msg: 2 callbacks suppressed
+tammi 09 13:56:30 manjaro kernel: python3[25911]: segfault at 20 ip 000079a58ec6e498 sp 00007ffe0bc1a790 error 4 in libMIOpen.so[3d20a498,79a58ea5c000+5928000] likely on CPU 0 (core 0, socket 0)
+tammi 09 13:56:30 manjaro kernel: Code: fb 75 ef 49 8b 1e 48 85 db 74 0d 48 89 df 5b 41 5e 41 5f e9 ca 90 70 05 5b 41 5e 41 5f c3 cc cc cc cc 41 57 41 56 53 48 89 fb <4c> 8b 77 20 4c 8b 7f 28 4d 39 fe 74 20 66 66 2e 0f 1f 84 00 00 00
+tammi 09 13:56:30 manjaro systemd-coredump[26379]: Process 25911 (python3) of user 0 terminated abnormally with signal 11/SEGV, processing...
+tammi 09 13:56:30 manjaro systemd[1]: Started Process Core Dump (PID 26379/UID 0).
+...
+tammi 09 13:57:34 manjaro dockerd[1656]: time="2025-01-09T13:57:34.365881072+02:00" level=warning msg="Container failed to exit within 10s of kill - trying direct SIGKILL" container=9e3bc1fd1d4971d9d66680a5986d1204b0fd2e2dccd847ffa7f91177f249478f error="context deadline exceeded"
+tammi 09 13:57:38 manjaro systemd-coredump[26380]: [🡕] Process 25911 (python3) of user 0 dumped core.
+
+                                                   Module [dso] without build-id.
+                                                   Stack trace of thread 1:
+                                                   #0  0x000079a58ec6e498 n/a (n/a + 0x0)
+                                                   ELF object binary architecture: AMD x86-64
+```

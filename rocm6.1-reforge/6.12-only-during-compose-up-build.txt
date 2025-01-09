@@ -1,0 +1,180 @@
+These amdgpu pagefaults didn't get printed with 6.1.123
+
+tammi 09 12:07:05 manjaro systemd[1]: Started libcontainer container 033b6c70c40d6ef2776150b8b920f531ea7cc1b95fa01847ab61a0f05f1b54c5.
+tammi 09 12:07:05 manjaro NetworkManager[992]: <info>  [1736417225.8195] device (vetha8e2d80): carrier: link connected
+tammi 09 12:07:05 manjaro NetworkManager[992]: <info>  [1736417225.8196] device (br-6fc2d944620f): carrier: link connected
+tammi 09 12:07:05 manjaro kernel: eth0: renamed from veth4298372
+tammi 09 12:07:05 manjaro kernel: br-6fc2d944620f: port 1(vetha8e2d80) entered blocking state
+tammi 09 12:07:05 manjaro kernel: br-6fc2d944620f: port 1(vetha8e2d80) entered forwarding state
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:169 vmid:0 pasid:0)
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00040B53
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CPC (0x5)
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x1
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x1
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x5
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x1
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x1
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:153 vmid:0 pasid:0)
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CB/DB (0x0)
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:169 vmid:0 pasid:0)
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CB/DB (0x0)
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:153 vmid:0 pasid:0)
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CB/DB (0x0)
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:169 vmid:0 pasid:0)
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CB/DB (0x0)
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:153 vmid:0 pasid:0)
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CB/DB (0x0)
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x0
+tammi 09 12:07:06 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x0
+tammi 09 12:07:27 manjaro systemd[1]: Started libcontainer container 68c3176363a2b7a2c8798fbd5b3e92b932c6b1db93f073d5a64c653c9e6dec58.
+tammi 09 12:07:27 manjaro NetworkManager[992]: <info>  [1736417247.6094] device (veth4178bbe): carrier: link connected
+tammi 09 12:07:27 manjaro NetworkManager[992]: <info>  [1736417247.6095] device (br-6fc2d944620f): carrier: link connected
+tammi 09 12:07:27 manjaro kernel: eth0: renamed from veth7d99bc1
+tammi 09 12:07:27 manjaro kernel: br-6fc2d944620f: port 1(veth4178bbe) entered blocking state
+tammi 09 12:07:27 manjaro kernel: br-6fc2d944620f: port 1(veth4178bbe) entered forwarding state
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:169 vmid:0 pasid:0)
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00040B53
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CPC (0x5)
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x1
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x1
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x5
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x1
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x1
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:153 vmid:0 pasid:0)
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CB/DB (0x0)
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:169 vmid:0 pasid:0)
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CB/DB (0x0)
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:153 vmid:0 pasid:0)
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CB/DB (0x0)
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:169 vmid:0 pasid:0)
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CB/DB (0x0)
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:153 vmid:0 pasid:0)
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CB/DB (0x0)
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x0
+tammi 09 12:07:28 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x0
+tammi 09 12:07:28 manjaro avahi-daemon[931]: Joining mDNS multicast group on interface veth4178bbe.IPv6 with address fe80::a009:30ff:fe0b:7aae.
+tammi 09 12:07:28 manjaro avahi-daemon[931]: New relevant interface veth4178bbe.IPv6 for mDNS.
+tammi 09 12:07:28 manjaro avahi-daemon[931]: Registering new address record for fe80::a009:30ff:fe0b:7aae on veth4178bbe.*.
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:169 vmid:0 pasid:0)
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00040B53
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CPC (0x5)
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x1
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x1
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x5
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x1
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x1
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:153 vmid:0 pasid:0)
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CB/DB (0x0)
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:169 vmid:0 pasid:0)
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CB/DB (0x0)
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:153 vmid:0 pasid:0)
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CB/DB (0x0)
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:169 vmid:0 pasid:0)
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CB/DB (0x0)
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:153 vmid:0 pasid:0)
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CB/DB (0x0)
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x0
+tammi 09 12:09:09 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x0
+
