@@ -13,7 +13,6 @@
 - `du -hd1 /var/lib/docker/overlay2 | sort -h`
 
 #### Remove image
-- `docker stop <container_id>`
 - `docker rm <container_id>`
 - `docker rmi <image>`
 
@@ -26,7 +25,7 @@ Remove specific unused data
 - `docker container prune -a`
 - `docker network prune -a`
 - `docker image prune -a`
-- `docker builder prune -a`
+- `docker builder prune -a` (always uses the most space)
 - `docker volume prune -a`
 
 #### Orphaned images

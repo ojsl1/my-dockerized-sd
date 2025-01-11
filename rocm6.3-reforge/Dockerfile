@@ -5,43 +5,37 @@ LABEL maintainer="Niinu <ojsl@protonmail.ch>"
 LABEL description="REFORGE + ROCm 6.3"
 LABEL url="https://github.com/ojsl1/my-dockerized-sd/"
 LABEL created="2025.01.09"
+LABEL updated="2025.01.10"
 
-# Define and set environment variables based on build arguments
-ARG PYTORCH_ROCM_ARCH
-ENV PYTORCH_ROCM_ARCH=$PYTORCH_ROCM_ARCH
-
-# Only necessary for unsupported cards, or if new rocm etc. updates break backwards compatibility)
+# Only necessary for unsupported cards
 ARG HSA_OVERRIDE_GFX_VERSION
 ENV HSA_OVERRIDE_GFX_VERSION=$HSA_OVERRIDE_GFX_VERSION
-
-# ???
-ARG USE_CUDA
-ENV USE_CUDA=$USE_CUDA
 
 # Hide iGPU, so it doesnt accidentally become the default device
 ARG HIP_VISIBLE_DEVICES
 ENV HIP_VISIBLE_DEVICES=$HIP_VISIBLE_DEVICES
 
+# Fix apt being a bitch with automation
 ARG DEBIAN_FRONTEND=noninteractive
 
+# Fix gradio being a bitch about previews
+RUN mkdir /tmp/gradio
+
+# Install python3
+RUN apt update -y && apt install -y software-properties-common python3.10-full python3-venv
+# (Optional) Change the version
+RUN update-alternatives --install /usr/local/bin/python python /usr/bin/python3.10 1
+
+# REFORGE SETUP:
 RUN mkdir /ReForge
 WORKDIR /ReForge
 
-# Workaround for gradio being a bitch about the previews
-RUN mkdir /tmp/gradio
-
-# REFORGE SETUP:
 RUN git clone https://github.com/Panchovix/stable-diffusion-webui-reForge.git
 WORKDIR stable-diffusion-webui-reForge
 RUN git checkout main
 
-# Install and setup python
-RUN apt update -y && apt install -y software-properties-common python3.10-full python3-venv
-# (Optional) Set the python version
-RUN update-alternatives --install /usr/local/bin/python python /usr/bin/python3.10 1
-# First set the environment variable so no need to retype path
+# Set up venv
 ENV VIRTUAL_ENV=/ReForge/stable-diffusion-webui-reForge/venv
-# Create venv
 RUN python3.10 -m venv $VIRTUAL_ENV
 # Activate venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"

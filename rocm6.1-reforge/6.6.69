@@ -372,7 +372,11 @@ tammi 09 14:29:10 manjaro kernel:  </TASK>
 tammi 09 14:29:10 manjaro kernel: ---[ end trace 0000000000000000 ]---
 
 
-Right after the page faults, removing config.json and ui-config.json from the container, and uncommenting the COPY config lines
+
+  ## Right after the page faults, removing config.json and ui-config.json from the container, and uncommenting the COPY config lines
+
+
+
 tammi 09 14:37:18 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
 tammi 09 14:37:18 manjaro kernel: [drm:amdgpu_mes_set_shader_debugger [amdgpu]] *ERROR* failed to set_shader_debugger
 tammi 09 14:37:19 manjaro avahi-daemon[908]: Joining mDNS multicast group on interface vethad8723a.IPv6 with address fe80::88cb:e1ff:fe8d:a282.
@@ -454,6 +458,13 @@ tammi 09 14:39:03 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.
 tammi 09 14:39:03 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
 tammi 09 14:39:03 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
 tammi 09 14:39:03 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
+
+
+
+  ## CUE AUTOMATIC AMDGPU RESET
+
+
+
 tammi 09 14:39:03 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: MODE1 reset
 tammi 09 14:39:03 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GPU mode1 reset
 tammi 09 14:39:03 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GPU smu mode1 reset

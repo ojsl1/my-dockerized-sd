@@ -1,42 +1,41 @@
 # Composable kernel compressed size: 6.04GB
 FROM rocm/composable_kernel:ck_ub20.04_rocm6.1
 
-# Define and set environment variables based on build arguments
+LABEL maintainer="Niinu <ojsl@protonmail.ch>"
+LABEL description="REFORGE+ROCm"
+LABEL url="https://github.com/ojsl1/my-dockerized-sd/"
+LABEL created="2024.07.27"
+LABEL updated="2025.01.08"
+
+# For building ROCM torch, specify gpu arch
 ARG PYTORCH_ROCM_ARCH
 ENV PYTORCH_ROCM_ARCH=$PYTORCH_ROCM_ARCH
-# Only necessary for unsupported cards, or if new rocm etc. updates break backwards compatibility)
+
+# For building torch, pick USE_CUDA or USE_ROCM
+# https://github.com/pytorch/pytorch/blob/main/aten/CMakeLists.txt#L75
+ARG USE_ROCM=1
+ENV USE_ROCM=$USE_ROCM
+
+# Only necessary for unsupported cards
 ARG HSA_OVERRIDE_GFX_VERSION
 ENV HSA_OVERRIDE_GFX_VERSION=$HSA_OVERRIDE_GFX_VERSION
-# ???
-ARG USE_CUDA
-ENV USE_CUDA=$USE_CUDA
+
 # Hide iGPU, so it doesnt accidentally become the default device
 ARG HIP_VISIBLE_DEVICES
 ENV HIP_VISIBLE_DEVICES=$HIP_VISIBLE_DEVICES
 
-LABEL maintainer="Niinu <ojsl@protonmail.ch>"
-LABEL description="REFORGE+ROCm for 7900XTX & 5800X3D"
-LABEL version="6.1"
-LABEL url="https://github.com/ojsl1/my-dockerized-sd/"
-LABEL created="2024.07.27"
-LABEL updated="2025.01.05"
-
-# Workaround for gradio being a bitch about previews
+# Fix gradio being a bitch about previews
 RUN mkdir /tmp/gradio
 
+# REFORGE SETUP:
 RUN mkdir /ReForge
 WORKDIR /ReForge
 
-# REFORGE SETUP:
 RUN git clone https://github.com/Panchovix/stable-diffusion-webui-reForge.git
 WORKDIR stable-diffusion-webui-reForge
 RUN git checkout main
 
-# Git pull will bitch about remote repos without these
-#RUN git config --global user.name "ojsl1"
-#RUN git config --global user.email "ojsl@protonmail.ch"
-
-# Add python3.10 ppa (The composable kernels are based on old ubuntu 20.04)
+# The composable kernel is too old to come with python3.10
 RUN apt update -y && add-apt-repository ppa:deadsnakes/ppa \
     && apt install -y software-properties-common python3.10-full python3-venv
 RUN update-alternatives --install /usr/local/bin/python python /usr/bin/python3.10 1
@@ -48,13 +47,12 @@ RUN python3.10 -m venv $VIRTUAL_ENV
 # Activate venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-# Just in case, upgrade package manager and package installer
+# (Optional) Upgrade pip and wheel
 RUN python3.10 -m pip install --upgrade pip wheel
 
-# Set cmake prefix
+# (Optional, WIP) Set cmake prefix
 ENV CMAKE_PREFIX_PATH=/Forge/stable-diffusion-webui-reForge/venv/
-
-# Compile dependencies
+# (Optional, torch are precompiled, no?) Compile dependencies
 RUN pip install cmake ninja
 
 # Uninstall prepackaged torch and torchvision
@@ -63,7 +61,8 @@ RUN pip uninstall -y torch torchvision
 # Install precompiled torch & torchvision from the official index
 RUN pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm6.1
 
-# Forge built-in extensions break with new huggingface_hub
+# (Forge) built-in extensions break with new huggingface_hub
+# (Todo)
 # https://github.com/easydiffusion/easydiffusion/issues/1851#issuecomment-2443519612
 #RUN pip install huggingface_hub==0.25.2
 
@@ -71,21 +70,32 @@ RUN pip3 install --pre torch torchvision torchaudio --index-url https://download
 RUN sed '/torch/d' requirements_versions.txt
 RUN pip install -r requirements_versions.txt
 
+#PACKAGE VERSIONS GET OUTPUT AT THIS STEP:
+# 2025.01.09
+#Installing collected packages: { pytorch-triton-rocm, mpmath, typing-extensions,
+# sympy, pillow, numpy, networkx, MarkupSafe,
+# fsspec, filelock, jinja2, torch, torchvision, torchaudio}
+
+#Removed packages from upstream as of 2025.01.09: { urllib3, idna,
+# charset-normalizer, certifi, requests }
+
 # Expose tcp port to the container
 EXPOSE 7860/tcp
 
-# Fix "detected dubious ownership in repository"
+# Fix "Failed reading extension data from Git repository"
+# Affected repositories: adetailer, auto-sd-paint-ext, sd-civitai-browser-plus,
+# sd-extension-system-info, sd-masonry, sd-webui-controlnet, sd-webui-qrcode-toolkit,
+# stable-diffusion-webui, stable-diffusion-webui-images-browser, stable-diffusion-webui-state
 RUN git config --global --add safe.directory '*'
-#RUN chown -R <user:user> stable-diffusion-webui TODO
 
-# Copy configs
-#COPY ./config.json /Forge/stable-diffusion-webui-reForge/config.json
-#COPY ./ui-config.json /Forge/stable-diffusion-webui-reForge/ui-config.json
+# Fix "detected dubious ownership in repository" (above fix already fixes this)
+#RUN chown -Rv $USER:$USER /ReForge/stable-diffusion-webui-reForge
 
-# Create a launch script
+# (Optional, WIP) Copy configs
+#COPY ./config_defaulted-reforge.json /ReForge/stable-diffusion-webui-reForge/config.json
+#COPY ./ui-config.json /ReForge/stable-diffusion-webui-reForge/ui-config.json
+
 # Editing launch params here triggers dockers cachebust leading to repo reclones and docker rebuilds
-COPY ./entrypoint.sh /ReForge/stable-diffusion-webui-reForge/entrypoint.sh
-RUN echo "Succesfully copied entrypoint.sh into the container"
-RUN chmod +x /ReForge/stable-diffusion-webui-reForge/entrypoint.sh
-ENTRYPOINT ["/ReForge/stable-diffusion-webui-reForge/entrypoint.sh"]
-RUN echo "Succesfully launched the webui with the copied entrypoint.sh"
+COPY ./launch.sh /ReForge/stable-diffusion-webui-reForge/launch.sh
+RUN chmod +x /ReForge/stable-diffusion-webui-reForge/launch.sh
+ENTRYPOINT ["/ReForge/stable-diffusion-webui-reForge/launch.sh"]

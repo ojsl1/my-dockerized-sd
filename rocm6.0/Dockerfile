@@ -2,8 +2,7 @@
 FROM rocm/composable_kernel:ck_ub20.04_rocm6.0
 
 LABEL maintainer="Niinu <ojsl@protonmail.ch>"
-LABEL description="A1111+FORGE+ROCm for 7900XTX & 5800X3D"
-LABEL version="6.0"
+LABEL description="A1111+FORGE+ROCm"
 LABEL url="https://github.com/ojsl1/my-dockerized-sd/"
 LABEL created="2024.03.06"
 
@@ -92,13 +91,13 @@ RUN pip uninstall -y torch torchvision
 # Install precompiled torch & torchvision from the official index:
 RUN pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm6.0
 
-  #PACKAGE VERSIONS ARE OUTPUT NEXT
+  #PACKAGE VERSIONS ARE OUTPUT HERE
   #collected packages: { mpmath, urllib3, typing-extensions, sympy,
   #pillow, numpy, networkx, MarkupSafe, idna, fsspec, filelock,
   #charset-normalizer, certifi, requests, pytorch-triton-rocm, jinja2,
   #torch, torchvision, torchaudio }
 
-# Remove torch from stable-diffusion-webui requirements.txt
+# Remove torch from requirements
 RUN sed '/torch/d' requirements.txt
 RUN pip install -r requirements.txt
 
@@ -106,24 +105,10 @@ RUN pip install -r requirements.txt
 EXPOSE 7860/tcp
 
 # Fix "detected dubious ownership in repository"
-## TODO: proper fix is to `RUN chown -R <user:user> stable-diffusion-webui`
 RUN git config --global --add safe.directory '*'
 
 # Emulate gfx1100, only necessary for unsupported cards - or if new updates break backwards compatibility
-## 17.6.2024 enabled to prevent the sdxl-refiner memory errors:
-### Memory access fault by GPU node-1 (Agent handle: 0xf39aa50) on address 0x7246c9200000. Reason: Page not present or supervisor privilege.`
 ENV HSA_OVERRIDE_GFX_VERSION=11.0.0
-
-# Fix outdated basicsr code
-## TODO: is this still outdated? (@27.02.2024)
-## TODO: does this break forge? (@13.03.2024 yes
-#RUN sed -i 's/from torchvision.transforms.functional_tensor import rgb_to_grayscale/from torchvision.transforms.functional import rgb_to_grayscale/' venv/lib/python3.10/site-packages/basicsr/data/degradations.py
-
-# Cachebust to always show output of pwd in docker output
-# requires manually prefixing docker-compose with random CACHEBUST=643743
-# TODO: for automatic prefixing migrate to spinning up with the WIP ./compose.sh
-ARG CACHEBUST=1
-RUN pwd && sleep 2
 
 # Copy configs:
 COPY ./config.json /A1111/stable-diffusion-webui/config.json
@@ -133,9 +118,6 @@ COPY ./ui-config.json /A1111/stable-diffusion-webui/ui-config.json
 COPY ./entrypoint.sh /A1111/stable-diffusion-webui/entrypoint.sh
 RUN chmod +x /A1111/stable-diffusion-webui/entrypoint.sh
 ENTRYPOINT ["/A1111/stable-diffusion-webui/entrypoint.sh"]
-
-# Modifying old launch required recloning repos:
-#CMD python3 launch.py --listen --enable-insecure-extension-access --disable-safe-unpickle --opt-sdp-attention --medvram
 
   # Below sdxl error is fixed with --medvram
   ## TODO: what about `--medvram-sdxl`?
