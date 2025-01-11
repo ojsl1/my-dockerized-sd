@@ -1,0 +1,22 @@
+After running the container below ring 169/ring 153 pagefault combinations get spammed eight (nine if the callback counts as one) times,
+generations still work, not sure about the speed.
+
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:169 vmid:0 pasid:0)
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CB/DB (0x0)
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x0
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x0
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x0
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x0
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x0
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: [gfxhub] page fault (src_id:0 ring:153 vmid:0 pasid:0)
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:   in page starting at address 0x0000000000000000 from client 10
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu: GCVM_L2_PROTECTION_FAULT_STATUS:0x00000000
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          Faulty UTCL2 client ID: CB/DB (0x0)
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MORE_FAULTS: 0x0
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          WALKER_ERROR: 0x0
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          PERMISSION_FAULTS: 0x0
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          MAPPING_ERROR: 0x0
+17:57:40 manjaro kernel: amdgpu 0000:0c:00.0: amdgpu:          RW: 0x0
+17:57:43 manjaro kernel: gmc_v11_0_process_interrupt: 2 callbacks suppressed

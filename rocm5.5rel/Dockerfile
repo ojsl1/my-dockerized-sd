@@ -29,10 +29,10 @@ WORKDIR patched
 RUN pip uninstall -y torch torchvision
 
 # Build pytorch
-RUN wget https://github.com/pytorch/pytorch/releases/download/v2.0.1/pytorch-v2.0.1.tar.gz # instead of 2.0.0 we build 2.0.1
+RUN wget https://github.com/pytorch/pytorch/releases/download/v2.0.1/pytorch-v2.0.1.tar.gz #build 2.0.1 instea of 2.0.0
 RUN tar -xzvf pytorch-v2.0.1.tar.gz #reflect above
 WORKDIR /SD-5.5/stable-diffusion-webui/patched/pytorch-v2.0.1
-#below envs attempt to fix segfault
+
 ENV PYTORCH_ROCM_ARCH="gfx1100"
 ENV USE_CUDA=0
 RUN pip install -r requirements.txt
@@ -45,17 +45,7 @@ WORKDIR /5.5rel/stable-diffusion-webui/patched/
 RUN wget https://github.com/pytorch/vision/archive/refs/tags/v0.15.2.tar.gz # instead of 0.15.1 we go for 0.15.2
 RUN tar -xzvf v0.15.2.tar.gz
 WORKDIR /5.5rel/stable-diffusion-webui/patched/vision-0.15.2
-#below has happened at least with:
-#2)sudo torch-2.0.1(n/a)+vision0.15.2(n/a)
-#1) torch 2.0.0(gfx1100)+vision0.15.2(FORCE_CUDA=1)
-#3)sudo torch-2.0.1(both)+vision0.15.2(both)
-#happens after succesfully downloading the default model and: (…)olve/main/vocab.json; (…)olve/main/merges.txt; (…)cial_tokens_map.json; (…)okenizer_config.json; (…)lve/main/config.json
-#sd-rocm5.5-release exited with code 139
-#Wed 2023-06-28 22:03:52 EEST 1326673    0    0 SIGILL  inaccessible /SD-5.5/stable-diffusion-webui/patched/pytorch-v2.0.0/build/CMakeFiles/CMakeScratch/TryCompile-qBHGvh/cmTC_91bad
-#Wed 2023-06-28 22:03:54 EEST 1326858    0    0 SIGILL  inaccessible /SD-5.5/stable-diffusion-webui/patched/pytorch-v2.0.0/build/CMakeFiles/CMakeScratch/TryCompile-1Zx7yh/cmTC_8ebd1
-#kernel: python3[1515518]: segfault at 0 ip 00007f97b4b4b669 sp 00007ffdbe581790 error 4 in libamdhip64.so.5.5.50600[7f97b4a80000+38c000] likely on CPU 4 (core 4, socket 0)
-#kernel: Code: c1 f8 03 48 39 c2 0f 83 e7 00 00 00 48 8b 04 d1 4c 8d 34 d5 00 00 00 00 4c 8b 68 18 49 8d 45 10 4d 85 ed 4c 0f 45 e8 48 8b 03 <48> 8b 04 d0 48 85 c0 74 0e 48 89 45 00 eb 81 0f 1f 84 00 00 00 00
-#below envs attempt to fix the above segfault:
+
 ENV PYTORCH_ROCM_ARCH="gfx1100"
 ENV USE_CUDA=0
 RUN python3 setup.py install

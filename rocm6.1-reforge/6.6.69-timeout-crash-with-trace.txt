@@ -1,4 +1,5 @@
-Same timeout crash right after pressing generate, however when running `docker-compose up rocm6.1-reforge --build` again the amdgpu stack trace got printed
+Problem: Same timeout crash right after pressing generate, however when running `docker-compose up rocm6.1-reforge --build` again the amdgpu stack trace got printed
+Possible fix: At the time I forgot to check how much memory pressure and/or cached buffers there were in memory.
 
 tammi 09 14:26:14 manjaro kernel: show_signal: 2 callbacks suppressed
 tammi 09 14:26:14 manjaro kernel: traps: python3[3293] general protection fault ip:7f6781167498 sp:7ffead12e2e0 error:0 in libMIOpen.so[7f6780f55000+5928000]
@@ -9,11 +10,6 @@ tammi 09 14:26:14 manjaro systemd-coredump[4543]: Removed old coredump core.pyth
 ...
 tammi 09 14:26:39 manjaro dockerd[1835]: time="2025-01-09T14:26:39.771025900+02:00" level=info msg="Container failed to exit within 10s of signal 15 - using the force" container=9e3bc1fd1d4971d9d66680a5986d1204b0fd2e2dccd847ffa7f91177f249478f spanID=71234f9c94f581fe traceID=c4f8474263fc93e302d26afe732b5e52
 tammi 09 14:26:39 manjaro dockerd[1835]: time="2025-01-09T14:26:39.836144518+02:00" level=warning msg="Container failed to exit within 10s of kill - trying direct SIGKILL" container=9e3bc1fd1d4971d9d66680a5986d1204b0fd2e2dccd847ffa7f91177f249478f error="context deadline exceeded"
-tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
-tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
-tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
-tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
-tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
 tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
 tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
 tammi 09 14:27:19 manjaro (sd-parse-elf)[4743]: Could not parse number of program headers from core file: invalid `Elf' handle
@@ -275,10 +271,6 @@ tammi 09 14:27:19 manjaro systemd-coredump[4543]: [🡕] Process 3293 (python3) 
                                                   ELF object binary architecture: AMD x86-64
 tammi 09 14:27:20 manjaro systemd[1]: systemd-coredump@0-4542-0.service: Deactivated successfully.
 tammi 09 14:27:20 manjaro systemd[1]: systemd-coredump@0-4542-0.service: Consumed 28.727s CPU time, 14.9G memory peak.
-tammi 09 14:28:54 manjaro PackageKit[2255]: uid 1000 is trying to obtain org.freedesktop.packagekit.system-sources-refresh auth (only_trusted:0)
-tammi 09 14:28:54 manjaro PackageKit[2255]: uid 1000 obtained auth for org.freedesktop.packagekit.system-sources-refresh
-tammi 09 14:28:54 manjaro PackageKit[2255]: refresh-cache transaction /3_cbdeeacc from uid 1000 finished with success after 0ms
-tammi 09 14:28:55 manjaro PackageKit[2255]: get-updates transaction /4_ededeaad from uid 1000 finished with success after 1ms
 tammi 09 14:29:06 manjaro NetworkManager[951]: <info>  [1736425746.3375] manager: (veth8cdc864): new Veth device (/org/freedesktop/NetworkManager/Devices/10)
 tammi 09 14:29:06 manjaro NetworkManager[951]: <info>  [1736425746.3381] manager: (veth12d03f1): new Veth device (/org/freedesktop/NetworkManager/Devices/11)
 tammi 09 14:29:06 manjaro kernel: br-6fc2d944620f: port 1(veth12d03f1) entered blocking state
@@ -386,21 +378,12 @@ tammi 09 14:37:19 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.
 tammi 09 14:37:19 manjaro kernel: [drm:amdgpu_mes_flush_shader_debugger [amdgpu]] *ERROR* failed to set_shader_debugger
 tammi 09 14:37:25 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
 tammi 09 14:37:25 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
-tammi 09 14:37:25 manjaro kwin_wayland[1278]: kwin_scene_opengl: 0x2: GL_INVALID_OPERATION in glDrawBuffers(unsupported buffer GL_BACK_LEFT)
-tammi 09 14:37:25 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
-tammi 09 14:37:25 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
-tammi 09 14:37:25 manjaro kwin_wayland[1278]: kwin_scene_opengl: 0x2: GL_INVALID_OPERATION in glDrawBuffers(unsupported buffer GL_BACK_LEFT)
-tammi 09 14:37:25 manjaro kwin_wayland[1278]: kwin_scene_opengl: 0x2: GL_INVALID_OPERATION in glDrawBuffers(unsupported buffer GL_BACK_LEFT)
 tammi 09 14:37:25 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
 tammi 09 14:37:25 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
 tammi 09 14:37:25 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
 tammi 09 14:37:25 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
-tammi 09 14:37:45 manjaro rtkit-daemon[1416]: Supervising 1 threads of 1 processes of 1 users.
-tammi 09 14:37:45 manjaro rtkit-daemon[1416]: Supervising 1 threads of 1 processes of 1 users.
-tammi 09 14:38:37 manjaro systemd[1]: Starting Cleanup of Temporary Directories...
-tammi 09 14:38:37 manjaro systemd[1]: systemd-tmpfiles-clean.service: Deactivated successfully.
-tammi 09 14:38:37 manjaro systemd[1]: Finished Cleanup of Temporary Directories.
-tammi 09 14:38:46 manjaro mullvad-daemon[985]: [mullvad_daemon::api_address_updater][DEBUG] Fetched new API address 45.83.223.196:443. Fetching again in 24 hours
+tammi 09 14:37:25 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
+tammi 09 14:37:25 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
 tammi 09 14:39:00 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
 tammi 09 14:39:00 manjaro kernel: [drm:amdgpu_mes_reg_write_reg_wait [amdgpu]] *ERROR* failed to reg_write_reg_wait
 tammi 09 14:39:00 manjaro kernel: [drm:mes_v11_0_submit_pkt_and_poll_completion.constprop.0 [amdgpu]] *ERROR* MES failed to response msg=14
