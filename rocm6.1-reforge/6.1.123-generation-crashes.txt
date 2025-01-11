@@ -1,5 +1,5 @@
-After pressing generate, gpu didnt start computing, sd crashed after having timed out or something
-Note the ring 169/ring 153 amdgpu pagefault logspam that occurs with 6.6.9 and 6.12 didnt get printed
+Problem: After pressing generate, gpu didnt start computing, sd crashed after having timed out or something.
+Note: the ring 169/ring 153 amdgpu pagefaults that occur with 6.6.9 and 6.12 didnt get printed
 
 tammi 09 14:05:33 manjaro kernel: traps: python3[3415] general protection fault ip:7fe049367498 sp:7ffdce3c4c00 error:0 in libMIOpen.so[7fe049155000+5928000]
 tammi 09 14:05:33 manjaro systemd-coredump[4865]: Process 3415 (python3) of user 0 terminated abnormally with signal 11/SEGV, processing...
