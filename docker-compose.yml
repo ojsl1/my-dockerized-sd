@@ -10,7 +10,7 @@ services:
         USE_CUDA: ${USE_CUDA}
         HIP_VISIBLE_DEVICES: ${HIP_VISIBLE_DEVICES}
     ports:
-      - "3000:7860"
+      - "3001:7860"
     volumes:
       - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/models:/Forge/stable-diffusion-webui/models/
       - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/embeddings:/Forge/stable-diffusion-webui/embeddings/
@@ -103,6 +103,34 @@ services:
       - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/embeddings:/Forge/stable-diffusion-webui-reForge/embeddings/
       - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/outputs:/ReForge/stable-diffusion-webui-reForge/outputs/
       - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/extensions:/ReForge/stable-diffusion-webui-reForge/extensions/
+    devices:
+      - '/dev/kfd:/dev/kfd'
+      - '/dev/dri:/dev/dri'
+    security_opt:
+      - seccomp:unconfined
+      - no-new-privileges:true
+    group_add:
+      - video
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+
+  rocm6.3-comfy:
+    container_name: rocm6.3-comfy
+    build:
+      context: .
+      dockerfile: rocm6.3-comfy/Dockerfile
+      args:
+        HSA_OVERRIDE_GFX_VERSION: ${HSA_OVERRIDE_GFX_VERSION}
+        HIP_VISIBLE_DEVICES: ${HIP_VISIBLE_DEVICES}
+    ports:
+      - "2999:7860"
+    volumes:
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/models/Stable-Diffusion:/comfy/ComfyUI/models/checkpoints/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/models/VAE:/comfy/ComfyUI/models/vae/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/embeddings:/comfy/ComfyUI/embeddings/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/outputs:/comfy/ComfyUI/outputs/
     devices:
       - '/dev/kfd:/dev/kfd'
       - '/dev/dri:/dev/dri'
