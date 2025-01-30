@@ -9,15 +9,6 @@ LABEL created="2025.01.29"
 ARG HSA_OVERRIDE_GFX_VERSION
 ENV HSA_OVERRIDE_GFX_VERSION=$HSA_OVERRIDE_GFX_VERSION
 
-ARG USE_ROCM
-ENV USER_ROCM=$USE_ROCM
-
-ARG USE_CUDA
-ENV USE_CUDA=$USE_CUDA
-
-ARG HCC_AMDGPU_TARGET
-ENV HCC_AMDGPU_TARGET=$HCC_AMDGPU_TARGET
-
 # Disable apt region prompts
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -51,22 +42,9 @@ RUN pip3 install --pre torch torchvision torchaudio --index-url https://download
 # Install dependencies
 RUN pip3 install -r requirements.txt
 
-# DEBUG
-RUN apt install rocminfo
-
-RUN rocminfo
-RUN sleep 10
-
 # Expose tcp port to the container
-EXPOSE 7860/tcp
+EXPOSE 8188/tcp
 
-# TODO
-# "From ComfyUI README:: Might speed things up at the cost of a very slow initial run"
-#ENV PYTORCH_TUNABLEOP_ENABLED=1
-
-# TODO
-# "From ComfyUI README: You can enable experimental memory efficient attention with pytorch 2.5/ComfyUI/RDNA3"
-#ENV TORCH_ROCM_AOTRITON_ENABLE_EXPERIMENTAL=1
-#python main.py --use-pytorch-cross-attention
-
-RUN python main.py --listen
+COPY ./launch-comfy.sh /comfy/ComfyUI/launch-comfy.sh
+RUN chmod +x /comfy/ComfyUI/launch-comfy.sh
+ENTRYPOINT ["/comfy/ComfyUI/launch-comfy.sh"]
