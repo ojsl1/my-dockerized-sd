@@ -117,6 +117,7 @@ services:
         max-size: "10m"
 
   rocm6.3-comfy:
+    user: "${UID}:${GID}"
     container_name: rocm6.3-comfy
     build:
       context: .

@@ -18,7 +18,7 @@
 
 #### Cleanup
 
-Remove all unused data
+Remove all unused data (warning: start up important containers to exclude them!).
 - `docker system prune -af`
 
 Remove specific unused data
