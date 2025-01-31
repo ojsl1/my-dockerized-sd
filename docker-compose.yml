@@ -128,8 +128,12 @@ services:
     volumes:
       - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/models/Stable-diffusion:/comfy/ComfyUI/models/checkpoints/
       - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/models/VAE:/comfy/ComfyUI/models/vae/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/models/Lora:/comfy/ComfyUI/models/loras/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/models/ESRGAN:/comfy/ComfyUI/models/upscale_models/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/custom_nodes:/comfy/ComfyUI/custom_nodes/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/workflows:/comfy/ComfyUI/user/default/workflows/
       - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/embeddings:/comfy/ComfyUI/embeddings/
-      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/outputs:/comfy/ComfyUI/outputs/
+      - /home/saukko/Dropbox/devel/projects/my-dockerized-sd/outputs:/comfy/ComfyUI/output/
     devices:
       - '/dev/kfd:/dev/kfd'
       - '/dev/dri:/dev/dri'

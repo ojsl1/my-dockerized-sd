@@ -22,9 +22,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN mkdir /tmp/gradio
 
 # Install python3
-RUN apt update -y && apt install -y software-properties-common python3.10-full python3-venv
-# (Optional) Change the version
-RUN update-alternatives --install /usr/local/bin/python python /usr/bin/python3.10 1
+RUN add-apt-repository ppa:deadsnakes/ppa && apt update -y \
+    && apt install -y software-properties-common python3.11-full python3-venv
+
+## "From ComfyUI README: some dependencies do not yet support python 3.13 so using 3.12 is recommended"
+RUN update-alternatives --install /usr/local/bin/python python /usr/bin/python3.11 1
 
 # REFORGE SETUP:
 RUN mkdir /ReForge
@@ -36,22 +38,22 @@ RUN git checkout main
 
 # Set up venv
 ENV VIRTUAL_ENV=/ReForge/stable-diffusion-webui-reForge/venv
-RUN python3.10 -m venv $VIRTUAL_ENV
+RUN python3.11 -m venv $VIRTUAL_ENV
 # Activate venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-# (Optional) Upgrade pip and wheel
-RUN python3.10 -m pip install --upgrade pip wheel
+# Upgrade pip and wheel
+RUN python3 -m pip install --upgrade pip wheel
 
 # Uninstall prepackaged torch and torchvision
-RUN pip uninstall -y torch torchvision
+RUN pip3 uninstall -y torch torchvision torchaudio
 
 # Install precompiled torch & torchvision from the official index
 RUN pip3 install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/rocm6.3
 
 # Remove torch from stable-diffusion-webui requirements.txt
 RUN sed '/torch/d' requirements_versions.txt
-RUN pip install -r requirements_versions.txt
+RUN pip3 install -r requirements_versions.txt
 
 # Expose tcp port to the container
 EXPOSE 7860/tcp
@@ -61,13 +63,6 @@ EXPOSE 7860/tcp
 # sd-extension-system-info, sd-masonry, sd-webui-controlnet, sd-webui-qrcode-toolkit,
 # stable-diffusion-webui, stable-diffusion-webui-images-browser, stable-diffusion-webui-state
 RUN git config --global --add safe.directory '*'
-
-# Fix "detected dubious ownership in repository" (above fix already fixes this)
-#RUN chown -Rv $USER:$USER /ReForge/stable-diffusion-webui-reForge
-
-# (Optional, WIP) Copy configs
-#COPY ./config_defaulted-reforge.json /ReForge/stable-diffusion-webui-reForge/config.json
-#COPY ./ui-config.json /ReForge/stable-diffusion-webui-reForge/ui-config.json
 
 # Editing launch params here triggers dockers cachebust leading to repo reclones and docker rebuilds
 COPY ./launch.sh /ReForge/stable-diffusion-webui-reForge/launch.sh
