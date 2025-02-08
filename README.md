@@ -1,6 +1,8 @@
-## Dockerized Stable Diffusion for AMD
+q## Dockerized Stable Diffusion for AMD
 - `docker-compose up <directive>`
- 
+
+Forge uses `config.json` and `ui-config.json` to save settings (note they've been prone to become incompatible with newer forge/gradio versions).
+
 #### Navigation:
 - `docker cp <container_id>:/Forge/stable-diffusion-webui/config.json ./config.json`
 - `docker exec -it rocm6.1 bash`
