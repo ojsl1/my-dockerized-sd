@@ -1,4 +1,4 @@
-q## Dockerized Stable Diffusion for AMD
+## Dockerized Stable Diffusion for AMD
 - `docker-compose up <directive>`
 
 Forge uses `config.json` and `ui-config.json` to save settings (note they've been prone to become incompatible with newer forge/gradio versions).
@@ -14,23 +14,21 @@ Forge uses `config.json` and `ui-config.json` to save settings (note they've bee
 - `docker inspect <container_id> | grep com.docker.compose`
 - `du -hd1 /var/lib/docker/overlay2 | sort -h`
 
-#### Remove image
-- `docker rm <container_id>`
-- `docker rmi <image>`
-
 #### Cleanup
-
 Remove all unused data (warning: start up important containers to exclude them!).
 - `docker system prune -af`
 
-Remove specific unused data
+Remove specific unused data:
 - `docker container prune -a`
 - `docker network prune -a`
 - `docker image prune -a`
 - `docker builder prune -a` (always uses the most space)
 - `docker volume prune -a`
 
-#### Orphaned images
+Remove image
+- `docker rm <container_id>`
+- `docker rmi <image>`
+
 Images with `<none>:<none>` indicate orphans that can be safely removed with:
 - `docker images -f "dangling=true"`
 - `docker image prune`
