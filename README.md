@@ -1,5 +1,5 @@
 ## Dockerized Stable Diffusion for AMD
-- `docker-compose up <directive>`
+- `docker-compose up <service>`
 
 Forge uses `config.json` and `ui-config.json` to save settings (note they've been prone to become incompatible with newer forge/gradio versions).
 
